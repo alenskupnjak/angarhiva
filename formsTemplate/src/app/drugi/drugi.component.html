@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form (ngSubmit)="mojaForma(frm)" #frm="ngForm">
+
+          <div class="form-group">
+            <label for="mojeEmail">Mail</label>
+            <input
+            type="email"
+            id="mojeEmail"
+            class="form-control"
+            ngModel
+            name="mojeEmail"
+            required
+            email
+            #mojEmailUnos="ngModel"
+            ><span class="help-block" 
+            *ngIf="!mojEmailUnos.valid && mojEmailUnos.touched" 
+            style="color: red;">
+            Upisati ispravnu mail adresu!
+            </span>
+          </div>
+
+
+          <div class="form-group">
+            <label for="Pretplata">Odaberi pretplatu</label>
+              <select type="button"
+              name="Pretplata"
+              id="Pretplata"
+              [ngModel]= "pocetnaVrijednost"
+              class="form-control">
+                <option *ngFor=" let data of pretplata"
+                [value]="data">{{data}}</option>
+              </select>
+          </div>
+
+            <div>
+                <p>Dugmad</p>
+
+            </div>
+          <div class="radio" *ngFor="let dataPretplata of pretplata">
+              <label>
+                <input
+                type="radio"
+                name="dataPretplata"
+                [ngModel] = pocetnaVrijednost
+                [value]="dataPretplata"
+                required
+                >
+                {{dataPretplata}}
+              </label>
+
+          </div>
+
+          <div class="form-group">
+            <label for="pass">Password</label>
+            <input
+            type="password"
+            id="pass"
+            class="form-control"
+            name="pass"
+            ngModel
+            required
+            #pass="ngModel">
+            <span class="help-block" *ngIf="!pass.valid && pass.touched">Upisi ispravan password</span>
+          </div>
+          <button class="btn btn-warning" type="submit" [disabled]="!frm.valid">Potvrdi</button>
+        </form>
+
+        <h3>Nakon dobro ispunjene forme pojaviti će se skriveni ulazni podaci ispod</h3>
+   
+
+        <div class="row" *ngIf="subbmited && frm.valid">
+          <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" *ngIf="subbmited">
+             <h3> Moji podaci</h3>
+            <p>Username: {{mojiPodaci.mojeEmail}}</p>
+            <p>Dugme: {{mojiPodaci.dugmad}}</p>
+            <p>Pass: {{mojiPodaci.Password}}</p>
+          </div>
+        </div >
+    </div>
+  </div>
+</div>

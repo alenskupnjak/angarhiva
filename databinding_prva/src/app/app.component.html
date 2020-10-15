@@ -1,0 +1,22 @@
+<div class="container">
+    <app-cockpit
+      (serverCreated)="onServerAdded($event)"
+      (blueprintCreated)="onBlueprintAdded($event)"
+       ></app-cockpit>
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onChangeFirst()"> Promjeni vrijednost prvog elementa</button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()"> Obriši prvu vrijednost</button>
+        <app-server-element *ngFor="let data of serverElements"
+        [element]="data"
+        [ime]=data.name>
+          <p>
+            <strong *ngIf="data.type === 'server'" style="color: red">{{ data.content }}</strong>
+            <em *ngIf="data.type === 'blueprint'">{{ data.content }}</em>
+          </p>
+        </app-server-element>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="promjeni()">
+        Only show odd numbers
+      </button>
+      <br>
+
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: nepar % 2 !== 0}"
+            [ngStyle]="{backgroundColor: nepar % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let nepar of neparni">
+            {{nepar}}
+          </li>
+        </div>
+      </ul>
+
+
+      <div *appUnless="onlyOdd">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              [ngClass]="{odd: par % 2 !== 0}"
+              [ngStyle]="{backgroundColor: par % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let par of parni">
+              {{par}}
+            </li>
+          </ul>
+      </div>
+
+        <p appBasicHighlight>Stylem me with directives</p>
+
+        
+          <p appBoljiHighlight
+            [defaultColor]="'Yellow'"
+            [highlightColor]="'red'">Stylem me with directives
+          </p>
+
+          <div [ngSwitch]="value">
+            <p *ngSwitchCase="5">Value is 5</p>
+            <p *ngSwitchCase="10">Value is 10</p>
+            <p *ngSwitchCase="100">Value is 100</p>
+            <p *ngSwitchDefault>Value is Default</p>
+          </div>
+
+      <ng-template [ngIf]="onlyOdd">
+        <p>Only odd</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<p>servers works!</p>
+
+<label> Server name</label>
+<input type="text" class="form-control" (input)='onUpdateServerName($event)'>
+<!-- <input type="text" class="form-control" [(ngModel)]='serverName'> -->
+
+<p>{{ serverName }}</p>
+
+
+<button class="btn btn-primary" [disabled]= '!allowNewServer' (click)='onCreateServer()'> Add server </button>
+
+<p [innerText]='allowNewServer'></p>
+
+<p *ngIf=!serverCreated>{{serverrCreationStatus}}</p>
+
+<p *ngIf="serverCreated; else noServer"> Server je kreiran, server name is {{ serverName }}</p>
+
+<ng-template #noServer>
+  <p>
+      No server creted!
+  </p>
+</ng-template>
+
+
+<app-server *ngFor="let server of servers"></app-server>
+
+<input type="text" class="form-control" [(ngModel)]='userName'>
+
+<p>{{ userName }}</p>
+
+<button class="btn btn-primary" [disabled]= "userName === ''" (click)='onCleanUserName()'> Add server </button>
+
+<hr>
+<label> Zadatak</label>
+<input type="text" class="form-control" [(ngModel)]='zapis'>
+<button class="btn btn-primary"   (click)='dodajZapis()'> Display details </button>
+
+<p *ngFor="let data of poljezapisa; let i = index"
+[ngStyle]="{backgroundColor: i > 4 ? 'blue' : 'red'}">{{data}}</p>
+
